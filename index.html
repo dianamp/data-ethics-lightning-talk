@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="diana.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  <h1>Data Ethics</h1>
+	  <h2>But what could go wrong?</h2>
+	  <br>
+	  <h3>Diana Pfeil, @dianam</h3>
+	</section>
+
+	<!--
+	    Abstract: Businesses are increasingly using data in sophisticated ways, and our lives are increasingly shaped by the outcome of these data-based algorithms. Our credit score, the ads we see, and how long we're sentenced to prison are all biproducts. This talk focuses on data ethics: how can you tell if your model or algorithm is entering destructive or unethical territory? You will walk away with a better understanding of how to think about these issues.
+	 -->
+
+	<section>
+	  <img data-src="images/ethics_target.png">
+	  <aside class="notes">
+	    Remember when this happened?<br>
+	    Target: Target started sending a teen mom-to-be baby ads, when no one knew she was pregnant, not even her father. The intent was innocent: if someone shops for a lot of video games, let's recommend others! If something shops for lots of pregnancy tests followed by pounds and poungs of ginger....oops...<br>
+	  </aside>
+	</section>
+	
+	<section>
+	  <center>
+	  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Socialist Rep. Alexandria Ocasio-Cortez (D-NY) claims that algorithms, which are driven by math, are racist <a href="https://t.co/X2veVvAU1H">pic.twitter.com/X2veVvAU1H</a></p>&mdash; Ryan Saavedra (@RealSaavedra) <a href="https://twitter.com/RealSaavedra/status/1087627739861897216?ref_src=twsrc%5Etfw">January 22, 2019</a></blockquote>
+	  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	  </center>
+	  <aside class="notes">
+	    AOC was in the news getting made made fun of for saying math is racist. Also Amazon was in the new for AI that predicted whether someone should be hired. It recommended against hiring women (amplified patterns in workforce - hire people that are similar to people already hired!)
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Let's not be ignorant</h2>
+	  <!--TODO: image -->
+	  <aside class="notes">
+	    Want to talk about something I've become increasingly passionate about - how to think about data ethics.
+	    This topic covers data privacy, bias and fairness in machine learning (if we're making a prediction about someone, how can we ensure we're not making unfair generalizations?), and what to watch out for. 
+	  </aside>
+	</section>
+
+	<section>
+	  <img class="stretch" data-src="images/womd_book.jpg">
+	  <aside class="notes">
+	    This book is the inspo, and I'll talk about that. The big message is think about your impact.
+	    Think about your impact<br>
+	    prison perform (sentencing guidelines based on questionaire prisoners fill out. Don't ask explicitly about race and ethnicity; Questions include asking about first run in with police and whether family members have criminal records. Oops! Justice system is about what you did, not who you are.
+	  </aside>
+	</section>
+
+	<section>
+	  <h2 class="purple">Failure modes for Northpointe recidivism model</h2>
+	  <table class="large">
+	    <thead>
+	      <tr>
+		<th></th>
+		<th>white</th>
+		<th>african-america</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>Labeled high risk, did not re-offend</td>
+		<td>23%</td>
+		<td>45%</td>
+	      </tr>
+	      <tr>
+		<td>Labeled low risk, did re-offend</td>
+		<td>48%</td>
+		<td>28%</td>
+	      </tr>
+	    </tbody>
+	  </table>
+	  <p style="font-size: small">Source: https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing</p>
+	</section>
+
+	<section>
+	  <h1>Dangerous Model Territory</h1>
+<!--	  <ul class="large">
+	    <li class="fragment"><span class="purple">
+	    <li class="fragment"><span class="purple">unfair:</span> illegal or unjust factors used in decision-making</li>
+	    <li class="fragment"><span class="purple">opaque:</span> model is not open or reviewable by those affected</li>
+	    <li class="fragment"><span class="purple">no feedback loop:</span> model does not course-correct</li>
+	  </ul>-->
+	  <aside class="notes">
+	    From http://money.cnn.com/2016/09/06/technology/weapons-of-math-destruction/<br>
+	    scale: denied job at walmart after failing a personality test? Good luck going to 
+	    Denied a job because of a personality test? Too bad -- the algorithm said you wouldn't be a good fit.<br>
+	    Charged a higher rate for a loan? Well, people in your zip code tend to be riskier borrowers.<br>
+	    Received a harsher prison sentence? Here's the thing: Your friends and family have criminal records too, so you're likely to be a repeat offender. <br>
+	    Fired from your teaching job because students test scores didn't increase enough, although everyone says you're a great teacher? The model won't improve <br>
+Quote from Cathy O'Niel: A weapon of math destruction is an algorithm that is important but secret at the same time, and also destroys people’s lives. It’s being used for important decisions, and it’s being used unfairly so that people’s lives get ruined, or at least they get injured.
+
+An example that really got my attention early on was the teacher value-added model. You had teachers whose jobs were on the line through secret teacher assessments that no one could explain to them and that were statistically flawed, so the scores were inconsistent. I found a teacher who scored a six out of 100 one year, and a 96 out of 100 the next year, without changing his methodology of teaching. When teachers tried to appeal their scores, they were told the scores were too mathematically complicated for them to understand. They were told, “You’re not expert enough to question this.”
+	  </aside>
+	</section>
+
+	<section>
+	  <p><span class="purple large">scale:</span> significant impact on everyone's lives</p>
+	  <img  style="height: 600px; width: auto" data-src="images/ethics_scale.jpg">
+	</section>
+
+	<section>
+	  <p><span class="purple large">unfair:</span> illegal or unjust factors used in decision-making</p>
+	  <img style="height: 600px; width: auto" data-src="images/ethics_loan.jpg">
+	</section>
+
+	<section>
+	  <p><span class="purple large">opaque:</span> model is not open or reviewable by those affected</p>
+	  <img style="height: 600px; width: auto" data-src="images/ethics_opaque.jpg">
+	</section>
+
+	<section>
+	  <p><span class="purple large">no feedback loop:</span> model does not course-correct</p>
+	  <img style="height: 600px; width: auto" data-src="images/ethics_loop.jpg">
+	</section>
+
+	<section>
+	  <img  style="height: 700px; width: auto" data-src="images/landscape.jpg">
+	  <aside class="notes">Trends: explainability in AI, openness and call for regulation. All good things to make sure we're not ruining peoples' lives.
+	  </aside>
+	</section>
+<!--
+	<section>
+	  <iframe data-src="https://giphy.com/embed/l41lFj8afmWIo3yW4" width="672" height="672" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a style="font-size: medium;" href="http://giphy.com/gifs/bose-lemonade-listening-render-fruit-l41lFj8afmWIo3yW4">via GIPHY</a></p>
+	</section>-->
+	
+	<section>
+	  <br>
+	  <p class="large purple; align:right">@dianam</p>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      history: true,
+
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
+      });
+    </script>
+  </body>
+</html>
